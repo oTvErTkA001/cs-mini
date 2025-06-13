@@ -1,8 +1,0 @@
-"cs-mini_eng"
-{
-	"base"				"fretta14"
-	"title"				"Counter-Strike Mini (eng)"
-	"menusystem"		"1"
-	"maps"				""
-	
-}
