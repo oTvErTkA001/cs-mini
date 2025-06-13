@@ -3,7 +3,7 @@ if (SERVER) then
 end
 
 if (CLIENT) then
-	SWEP.DrawCrosshair = true
+	SWEP.DrawCrosshair = false
 	SWEP.PrintName 		= "Schmidt Scout"
 
 	SWEP.IconLetterCSS	= "n"

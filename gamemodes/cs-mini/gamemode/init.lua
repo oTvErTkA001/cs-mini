@@ -24,26 +24,16 @@ end
 --tells the game what to do every
 function GM:OnRoundStart( num )
 
-	for t=1,2 do
-		for k,v in pairs( team.GetPlayers( t ) ) do
-		--	v:SetFrags( 0 )
-		--	v:SetDeaths( 0 )
-		end
+	if team.NumPlayers( TEAM_T ) > 0  then
+		local terrorTeam = team.GetPlayers( TEAM_T ); // get all the  terror team
+		local bomb = table.Random( terrorTeam ); // get our bomb
+		bomb:Give( "weapon_cs_c4" )
 	end
 
 	UTIL_UnFreezeAllPlayers()
 
-	GAMEMODE.hostagesInRound = #ents.FindByClass("cs_hostage")
-	GAMEMODE.TotalhostagesInRound = GAMEMODE.hostagesInRound
-	GAMEMODE.DeadhostagesInRound = 0
-	GAMEMODE.hostagesInRoundM = GAMEMODE.hostagesInRound
-	if GAMEMODE.hostagesInRound > 0 then
-		IsCSRound = true
-	else
-		IsCSRound = false
-	end
-
 end
+
 
 
 function GM:OnRoundResult( t )
@@ -61,33 +51,61 @@ function GM:OnRoundResult( t )
 	-- if team.GetScore( t ) >= 3 then
 	-- 	timer.Simple( 5, function() GAMEMODE:EndOfGame( false ) end )
 	-- end
+
 end
 
 function GM:RoundTimerEnd()
 
-	-- if team.TotalFrags( TEAM_CT ) < team.TotalFrags( TEAM_T ) then
-	-- --	GAMEMODE:RoundEndWithResult( TEAM_T )
-	-- 	GAMEMODE:RoundEndWithResult( 1001, "Draw, everyone loses!" )
-	-- elseif team.TotalFrags( TEAM_CT ) > team.TotalFrags( TEAM_CT ) then
-	-- --	GAMEMODE:RoundEndWithResult( TEAM_CT )
-	-- 	GAMEMODE:RoundEndWithResult( 1001, "Draw, everyone loses!" )
-	-- else
-	-- 	GAMEMODE:RoundEndWithResult( 1001, "Draw, everyone loses!" )
-	-- end
-	GAMEMODE:RoundEndWithResult( 1001, "Ничья!" )
+	GAMEMODE:RoundEndWithResult( TEAM_CT, "Time Up. Counter-Terrorists win!" )
 
 end
+
+function GM:T_WIN()
+
+	self:RoundEndWithResult( TEAM_T, "The bomb exploded. Terrorists win!" );
+
+end
+
+function GM:CT_WIN( )
+
+	self:RoundEndWithResult( TEAM_CT, "Bomb defused. Counter-Terrorists win!" );
+
+end
+
 
 function GM:CheckRoundEnd()
-	if IsCSRound then
-		if !(GAMEMODE.DeadhostagesInRound == GAMEMODE.TotalhostagesInRound) and GAMEMODE.hostagesInRound <= 0 then
-			GAMEMODE:RoundEndWithResult(TEAM_CT)
+
+	if ( !GAMEMODE:InRound() ) then return end
+
+	isbomb = true;
+
+	for k, v in ipairs( ents.FindByClass( "ent_burger_cs_c4" ) ) do
+		-- print( v:GetPos() )
+		isbomb = false;
+	end
+
+	local tCount = 0
+	local ctCount = 0
+
+	for _, pl in player.Iterator() do
+		if pl:Alive() then
+			if pl:Team() == 2 then
+				tCount = tCount + 1
+			elseif pl:Team() == 1 then
+				ctCount = ctCount + 1
+			end
 		end
 	end
-end
 
+	if( tCount == 0 and team.NumPlayers( TEAM_T ) > 0  and isbomb ) then
+		GAMEMODE:RoundEndWithResult( TEAM_CT, "Counter-Terrorists win!" );
+	end
 
-function GM:OnRoundWinner( )
+	if( ctCount == 0 and team.NumPlayers( TEAM_CT ) > 0  ) then
+		GAMEMODE:RoundEndWithResult( TEAM_T, " Terrorists win!" );
+	end
+
+	timer.Create( "CheckRoundEnd", 1, 0, function() GAMEMODE:CheckRoundEnd() end )
 
 end
 
@@ -102,21 +120,44 @@ function StripWorld()
     end
 end
 
---------------------------------------------------------------------------------------------------------------
-hook.Add("InitPostEntity", "csHostages_InitMap", function()
-	timer.Simple(3, function()
-		if not navmesh.IsLoaded() and GetConVar("cs_hostage_enabled"):GetBool() then
-			if #ents.FindByClass("hostage_entity") > 0 then
-				local entities = ents.FindByClass("hostage_entity")
-				entities = table.Add(entities, ents.FindByClass("info_player*"))
-				for k,v in pairs(entities) do
-					navmesh.AddWalkableSeed(v:GetPos(), v:GetUp())
-				end
 
-				print("Navmesh is not generated for map - Generating now..")
-				navmesh.BeginGeneration()
+-------------------------------------------------------------------
 
-			end
-		end
-	end)
+hook.Add("StartCommand", "Dynamic Height + Hull Fix FIX", function()
+	hook.Remove("StartCommand", "Dynamic Height + Hull Fix FIX")
+
+	if DynamicCameraUpdateTrueModel then
+		local ECPlayerTickRate = 0.5
+
+		hook.Add("PlayerTick", "DynamicCamera:PlayerTick", function(ply)
+			if (ply.ECPlayerTickTime or 0) > CurTime() then return end
+			ply.ECPlayerTickTime = CurTime() + ECPlayerTickRate
+			
+			DynamicCameraUpdateTrueModel(ply)
+		end)
+	end
 end)
+
+-------------------------------------------------------------------
+
+local function DoDropWeapon( victim, inflictor, attacker )
+	for i=1 , table.Count( victim:GetWeapons() ) do
+		if IsValid( victim:GetWeapons()[i]) then
+			local ent = ents.Create( victim:GetWeapons()[i]:GetClass() )
+			ent:SetPos( victim:GetPos() )
+			ent:SetParent( victim.Entity )
+			ent:Spawn()
+		end
+	end
+end
+
+hook.Add("PlayerDeath","DROPWEAPON",DoDropWeapon)
+
+-------------------------------------------------------------------
+hook.Add( "PlayerSwitchFlashlight", "BlockFlashLight", function( ply, enabled )
+	return true
+end )
+
+hook.Add( "AllowPlayerPickup", "AllowpickUp", function( ply, ent )
+    return false
+end )

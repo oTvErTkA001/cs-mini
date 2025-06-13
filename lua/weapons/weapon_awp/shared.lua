@@ -3,7 +3,7 @@ if (SERVER) then
 end
 
 if (CLIENT) then
-	SWEP.DrawCrosshair = true
+	SWEP.DrawCrosshair = false
 	SWEP.PrintName 		= "Magnum Sniper Rifle"
 	SWEP.ViewModelFOV		= 75
 
@@ -68,3 +68,4 @@ SWEP.CrouchWalkCone			= 0.2 -- Accuracy when we're crouching and walking
 SWEP.WalkCone				= 0.2 -- Accuracy when we're walking
 SWEP.AirCone				= 0.5 -- Accuracy when we're in air
 SWEP.StandCone				= 0.0001 -- Accuracy when we're standing still
+

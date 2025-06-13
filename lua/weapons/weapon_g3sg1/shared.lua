@@ -3,7 +3,7 @@ if (SERVER) then
 end
 
 if (CLIENT) then
-	SWEP.DrawCrosshair = true
+	SWEP.DrawCrosshair = false
 	SWEP.PrintName 		= "D3/AU-1"
 	SWEP.ViewModelFOV		= 65
 

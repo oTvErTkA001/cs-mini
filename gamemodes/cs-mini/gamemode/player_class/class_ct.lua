@@ -2,18 +2,18 @@
 local CLASS = {}
 
 CLASS.Base 				= "player"
-CLASS.DisplayName		= "Морские котики США" --"SEAL TEAM 6"
-CLASS.Description       = "Подразделение морских котиков 6 (позже известное под DEVGRU) образовалось\n в 1980 под командыванием капитан-лейтенанта Ричарда Марсинко. \nST-6 находилась в постоянной готовности пресечь по тревоге любые \nтеррористические акты в любой точке мира, направленные против Америки."
+CLASS.DisplayName		= "SEAL TEAM 6" --"SEAL TEAM 6"
+CLASS.Description       = "ST-6 (to be known later as DEVGRU) was founded in 1980 \nunder the command of Lieutenant-Commander Richard \nMarcincko. ST-6 was placed on permanent alert to respond \nto terrorist attacks against American targets worldwide."
 CLASS.PlayerModel		= {"models/player/urban.mdl"}
 
 function CLASS:Loadout( pl )
 
 pl:Give( "weapon_usp" )
 pl:Give( "weapon_knife" )
-pl:GiveAmmo( 60, "smg1", true )
-pl:GiveAmmo( 60, "ar2", true )
-pl:GiveAmmo( 7, "357", true )
-pl:GiveAmmo( 10, "Buckshot", true )
+-- pl:GiveAmmo( 60, "smg1", true )
+-- pl:GiveAmmo( 60, "ar2", true )
+-- pl:GiveAmmo( 7, "357", true )
+-- pl:GiveAmmo( 10, "Buckshot", true )
 
 end
 
@@ -29,18 +29,17 @@ player_class.Register( "ct_urban", CLASS )
 local CLASS = {}
 
 CLASS.Base 				= "player"
-CLASS.DisplayName		= "Германский спецназ" --"GSG-9 "
-CLASS.Description       = "Подразделение GSG-9 появилось в ходе трагических событий\nна Олимпийских играх1972 года в Мюнхене (Германия), приведших к\nгибели нескольких атлетов из Израиля."
+CLASS.DisplayName		= "GSG-9" --"GSG-9 "
+CLASS.Description       = "GSG-9 was born out of the tragic events that led to the \ndeath of several Israeli athletes during the \n1972 Olympic games in Munich, Germany."
 CLASS.PlayerModel		= {"models/player/riot.mdl"}
-
 function CLASS:Loadout( pl )
 
 pl:Give( "weapon_usp" )
 pl:Give( "weapon_knife" )
-pl:GiveAmmo( 60, "smg1", true )
-pl:GiveAmmo( 60, "ar2", true )
-pl:GiveAmmo( 7, "357", true )
-pl:GiveAmmo( 10, "Buckshot", true )
+-- pl:GiveAmmo( 60, "smg1", true )
+-- pl:GiveAmmo( 60, "ar2", true )
+-- pl:GiveAmmo( 7, "357", true )
+-- pl:GiveAmmo( 10, "Buckshot", true )
 
 end
 
@@ -54,18 +53,18 @@ player_class.Register( "ct_gsg9", CLASS )
 local CLASS = {}
 
 CLASS.Base 				= "player"
-CLASS.DisplayName		= "Великобританский спецназ" --"SAS "
-CLASS.Description       = "Всемирно известное подразделение САС было образовано Дэвидом Стирлингом\nво время Второй Мировой войны. Его роль во время войны заключалась в сборе\nразведанных в тыле врага, организации саботажа и убийств на ключевых\nобъектах противника."
+CLASS.DisplayName		= "SAS" --"SAS "
+CLASS.Description       = "The world-renowned British SAS was founded in the Second \nWorld War by a man named David Stirling. Their \nrole during WW2 involved gathering intelligence behind \nenemy lines and executing sabotage strikes and \nassassinations against key targets."
 CLASS.PlayerModel		= {"models/player/gasmask.mdl"}
 
 function CLASS:Loadout( pl )
 
 pl:Give( "weapon_usp" )
 pl:Give( "weapon_knife" )
-pl:GiveAmmo( 60, "smg1", true )
-pl:GiveAmmo( 60, "ar2", true )
-pl:GiveAmmo( 7, "357", true )
-pl:GiveAmmo( 10, "Buckshot", true )
+-- pl:GiveAmmo( 60, "smg1", true )
+-- pl:GiveAmmo( 60, "ar2", true )
+-- pl:GiveAmmo( 7, "357", true )
+-- pl:GiveAmmo( 10, "Buckshot", true )
 
 end
 
@@ -79,18 +78,18 @@ player_class.Register( "ct_sas", CLASS )
 local CLASS = {}
 
 CLASS.Base 				= "player"
-CLASS.DisplayName		= "Французский спецназ" --"GIGN "
-CLASS.Description       = "Элитное  подразделение Франции - GIGN -\nсилы быстрого реагирования, способные противостоять любому\nкрупномасштабному террористическому инциденту.\nНесмотря на малую численность (около 100 человек) GIGN заработала\nхорошую репутацию, проведя множество успешных\nконтртеррористических операций."
+CLASS.DisplayName		= "GIGN" --"GIGN "
+CLASS.Description       = "France's elite Counter-Terrorist unit, the GIGN, was \ndesigned to be a fast response force that could \ndecisively react to any large-scale terrorist incident. \nConsisting of no more than 100 men, the GIGN has earned \nits reputation through a history of successful ops."
 CLASS.PlayerModel		= {"models/player/swat.mdl"}
 
 function CLASS:Loadout( pl )
 
 pl:Give( "weapon_usp" )
 pl:Give( "weapon_knife" )
-pl:GiveAmmo( 60, "smg1", true )
-pl:GiveAmmo( 60, "ar2", true )
-pl:GiveAmmo( 7, "357", true )
-pl:GiveAmmo( 10, "Buckshot", true )
+-- pl:GiveAmmo( 60, "smg1", true )
+-- pl:GiveAmmo( 60, "ar2", true )
+-- pl:GiveAmmo( 7, "357", true )
+-- pl:GiveAmmo( 10, "Buckshot", true )
 
 end
 

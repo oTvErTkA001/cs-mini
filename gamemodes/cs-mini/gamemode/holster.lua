@@ -168,6 +168,11 @@ weaponsinfos["weapon_smokegrenade"].Bone="ValveBiped.Bip01_Pelvis"
 weaponsinfos["weapon_smokegrenade"].BoneOffset={Vector(3,-5,6),Angle(-95,0,0)}
 weaponsinfos["weapon_smokegrenade"].Priority="weapon_hegrenade"
 
+weaponsinfos["weapon_cs_c4"]={}
+weaponsinfos["weapon_cs_c4"].Model="models/weapons/w_c4.mdl"
+weaponsinfos["weapon_cs_c4"].Bone="ValveBiped.Bip01_R_Clavicle"
+weaponsinfos["weapon_cs_c4"].BoneOffset={Vector(5,0,4),Angle(20,0,0)}
+
 -- weaponsinfos["weapon_knife"]={}
 -- weaponsinfos["weapon_knife"].Model="models/weapons/w_knife_t.mdl"
 -- weaponsinfos["weapon_knife"].Bone="ValveBiped.Bip01_Pelvis"

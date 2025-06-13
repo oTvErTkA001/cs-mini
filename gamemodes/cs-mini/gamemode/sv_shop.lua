@@ -25,10 +25,11 @@ local function PlayerDie(victim, attacker)
         net.Start("Update money HUD")
         net.WriteFloat(playerMoney[victim])
         net.Send(victim)
---       victim:ChatPrint("Ваши деньги: " .. playerMoney[victim])
+--        victim:ChatPrint("Ваши деньги: " .. playerMoney[victim])
     end
 end
 hook.Add("PlayerDeath", "IncreasePlayerMoneey", PlayerDie)
+
 
 local function PlayerSpawn(ply)
     playerMoney[ply] = 800
@@ -60,7 +61,7 @@ net.Receive("ShopButton", function(len, ply)
         net.WriteFloat(playerMoney[ply])
         net.Send(ply)
     else
-        ply:ChatPrint("Ты слишком бедный для этого")
+        ply:ChatPrint("You're too poor for this")
     end
 end)
 
@@ -86,7 +87,7 @@ net.Receive("ShopButton2", function(len, ply)
         net.WriteFloat(playerMoney[ply])
         net.Send(ply)
     else
-        ply:ChatPrint("Ты слишком бедный для этого")
+        ply:ChatPrint("You're too poor for this")
     end
 end)
 
@@ -112,7 +113,7 @@ net.Receive("ShopButton3", function(len, ply)
         net.WriteFloat(playerMoney[ply])
         net.Send(ply)
     else
-        ply:ChatPrint("Ты слишком бедный для этого")
+        ply:ChatPrint("You're too poor for this")
     end
 end)
 
@@ -138,7 +139,7 @@ net.Receive("ShopButton4", function(len, ply)
         net.WriteFloat(playerMoney[ply])
         net.Send(ply)
     else
-        ply:ChatPrint("Ты слишком бедный для этого")
+        ply:ChatPrint("You're too poor for this")
     end
 end)
 
@@ -164,7 +165,7 @@ net.Receive("ShopButton5", function(len, ply)
         net.WriteFloat(playerMoney[ply])
         net.Send(ply)
     else
-        ply:ChatPrint("Ты слишком бедный для этого")
+        ply:ChatPrint("You're too poor for this")
     end
 end)
 
@@ -190,7 +191,7 @@ net.Receive("ShopButton6", function(len, ply)
         net.WriteFloat(playerMoney[ply])
         net.Send(ply)
     else
-        ply:ChatPrint("Ты слишком бедный для этого")
+        ply:ChatPrint("You're too poor for this")
     end
 end)
 
@@ -216,7 +217,7 @@ net.Receive("ShopButton7", function(len, ply)
         net.WriteFloat(playerMoney[ply])
         net.Send(ply)
     else
-        ply:ChatPrint("Ты слишком бедный для этого")
+        ply:ChatPrint("You're too poor for this")
     end
 end)
 
@@ -235,11 +236,11 @@ net.Receive("ShopButton8", function(len, ply)
         net.WriteFloat(playerMoney[ply])
         net.Send(ply)
     else
-        ply:ChatPrint("Ты слишком бедный для этого")
+        ply:ChatPrint("You're too poor for this")
     end
 end)
 
-hook.Add("PlayerButtonDown", "OpenMenuOnF3Press", function(ply, button)
+hook.Add("PlayerButtonDown", "OpenMenuOnBPress", function(ply, button)
     if button == KEY_B then
         ply:ConCommand("cs_shopopen")
     end

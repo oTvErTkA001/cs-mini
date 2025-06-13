@@ -1,0 +1,1 @@
+BURGERBASE:INIT_MassInclude("burgerbase/modules/css/shared/convars/","shared",false)

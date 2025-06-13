@@ -2,18 +2,18 @@
 local CLASS = {}
 
 CLASS.Base 				= "player"
-CLASS.DisplayName		= "Подразделение Феникс" --"Phoenix Connexion"
-CLASS.Description       = "Известные тем, что убивают любого, кто встает у них на пути. Подразделение Феникс - одна из наиболее опасных террористических группировок в Восточной Европе. Группировка сформировалась вскоре после развала СССР."
+CLASS.DisplayName		= "Phoenix Connexion" --"Phoenix Connexion"
+CLASS.Description       = "Having established a reputation for killing anyone that \ngets in their way, the Phoenix Faction is one of \nthe most feared terrorist groups in Eastern Europe. \nFormed shortly after the breakup of the USSR."
 CLASS.PlayerModel		= {"models/player/phoenix.mdl"}
 
 function CLASS:Loadout( pl )
 
 pl:Give( "weapon_glock" )
 pl:Give( "weapon_knife" )
-pl:GiveAmmo( 60, "smg1", true )
-pl:GiveAmmo( 60, "ar2", true )
-pl:GiveAmmo( 7, "357", true )
-pl:GiveAmmo( 10, "Buckshot", true )
+-- pl:GiveAmmo( 60, "smg1", true )
+-- pl:GiveAmmo( 60, "ar2", true )
+-- pl:GiveAmmo( 7, "357", true )
+-- pl:GiveAmmo( 10, "Buckshot", true )
 
 end
 
@@ -29,18 +29,18 @@ player_class.Register( "t_terror", CLASS )
 local CLASS = {}
 
 CLASS.Base 				= "player"
-CLASS.DisplayName		= "Элитное подразделение" --"Elite Crew "
-CLASS.Description       = "Фундаменталистская группировка из Средней Азии, \nстремящаяся к мировому господству \nи совершающая различные преступления."
+CLASS.DisplayName		= "Elite Crew" --"Elite Crew "
+CLASS.Description       = "Middle Eastern fundamentalist group bent on world \ndomination and various other evil deeds."
 CLASS.PlayerModel		= {"models/player/leet.mdl"}
 
 function CLASS:Loadout( pl )
 
 pl:Give( "weapon_glock" )
 pl:Give( "weapon_knife" )
-pl:GiveAmmo( 60, "smg1", true )
-pl:GiveAmmo( 60, "ar2", true )
-pl:GiveAmmo( 7, "357", true )
-pl:GiveAmmo( 10, "Buckshot", true )
+-- pl:GiveAmmo( 60, "smg1", true )
+-- pl:GiveAmmo( 60, "ar2", true )
+-- pl:GiveAmmo( 7, "357", true )
+-- pl:GiveAmmo( 10, "Buckshot", true )
 
 end
 
@@ -55,19 +55,19 @@ player_class.Register( "t_leet", CLASS )
 
 local CLASS = {}
 
-CLASS.Base 				= "player"
-CLASS.DisplayName		= "Арктические мстители" --"Arctic Avengers"
-CLASS.Description       = "Шведская террористическая группа, появилась в 1977 г. \nИзвестна взрывом посольства Канады в 1990 г."
-CLASS.PlayerModel		= {"models/player/arctic.mdl"}
 
+CLASS.Base 				= "player"
+CLASS.DisplayName		= "Arctic Avengers" --"Arctic Avengers"
+CLASS.Description       = "Swedish terrorist faction founded in 1977. Famous for \ntheir bombing of the Canadian embassy in 1990."
+CLASS.PlayerModel		= {"models/player/arctic.mdl"}
 function CLASS:Loadout( pl )
 
 pl:Give( "weapon_glock" )
 pl:Give( "weapon_knife" )
-pl:GiveAmmo( 60, "smg1", true )
-pl:GiveAmmo( 60, "ar2", true )
-pl:GiveAmmo( 7, "357", true )
-pl:GiveAmmo( 10, "Buckshot", true )
+-- pl:GiveAmmo( 60, "smg1", true )
+-- pl:GiveAmmo( 60, "ar2", true )
+-- pl:GiveAmmo( 7, "357", true )
+-- pl:GiveAmmo( 10, "Buckshot", true )
 
 end
 
@@ -81,18 +81,18 @@ player_class.Register( "t_arctic", CLASS )
 local CLASS = {}
 
 CLASS.Base 				= "player"
-CLASS.DisplayName		= "Партизаны" --"Guerilla Warfare "
-CLASS.Description       = "Террористическая группировка, образовалась на Среднем Востоке. \nЭта группировка известна своей жестокостью.\nСвое отвращение к американскому образу жизни они \nпродемонстрировали в 1982 году,  бросив бомбу \nв автобус с несколькими рок-н-ролльными группами."
+CLASS.DisplayName		= "Guerilla Warfare" --"Guerilla Warfare "
+CLASS.Description       = "A terrorist faction founded in the Middle East, this \ngroup has a reputation for ruthlessness. Their \ndisgust for the American lifestyle was demonstrated in \ntheir 1982 bombing of a school bus full of Rock and Roll \nmusicians."
 CLASS.PlayerModel		= {"models/player/guerilla.mdl"}
 
 function CLASS:Loadout( pl )
 
 pl:Give( "weapon_glock" )
 pl:Give( "weapon_knife" )
-pl:GiveAmmo( 60, "smg1", true )
-pl:GiveAmmo( 60, "ar2", true )
-pl:GiveAmmo( 7, "357", true )
-pl:GiveAmmo( 10, "Buckshot", true )
+-- pl:GiveAmmo( 60, "smg1", true )
+-- pl:GiveAmmo( 60, "ar2", true )
+-- pl:GiveAmmo( 7, "357", true )
+-- pl:GiveAmmo( 10, "Buckshot", true )
 
 end
 

@@ -1,5 +1,5 @@
 GM.Name 	= "Counter-Strike Mini"
-GM.Author 	= "oTvErTkA"
+GM.Author 	= "Lenurdo"
 GM.Email 	= ""
 GM.Website 	= "https://steamcommunity.com/profiles/76561198375778469"
 GM.Help		= ""
@@ -12,7 +12,7 @@ end
 
 GM.Data = {}
 
-DeriveGamemode( "fretta15" )
+DeriveGamemode( "fretta14.3" )
 
 
 IncludePlayerClasses()					-- Automatically includes files in "gamemode/player_class"
@@ -48,7 +48,7 @@ GM.RoundBased = true				-- Round based, like CS
 GM.RoundLength = 301				-- Round length, in seconds
 GM.RoundPreStartTime = 3			-- Preperation time before a round starts
 GM.RoundPostLength = 5				-- Seconds to show the 'x team won!' screen at the end of a round
-GM.RoundEndsWhenOneTeamAlive = true	-- CS Style rules
+GM.RoundEndsWhenOneTeamAlive = false	-- CS Style rules
 
 GM.EnableFreezeCam = false			-- TF2 Style Freezecam
 GM.DeathLingerTime = 3				-- The time between you dying and it going into spectator mode, 0 disables
@@ -59,7 +59,7 @@ GM.SelectColor = false				-- Can players modify the colour of their name? (ie.. 
 GM.PlayerRingSize = 48              -- How big are the colored rings under the player's feet (if they are enabled) ?
 GM.HudSkin = "SimpleSkin"
 
-GM.SuicideString = "Самовыпилился"
+GM.SuicideString = "die"
 
 GM.ValidSpectatorModes = { OBS_MODE_CHASE, OBS_MODE_IN_EYE }
 GM.ValidSpectatorEntities = { "player" }	-- Entities we can spectate
@@ -72,15 +72,15 @@ function GM:CreateTeams()
 
 	if ( !GAMEMODE.TeamBased ) then return end
 
-	team.SetUp( TEAM_CT, "Спецназ", Color( 0, 0, 210 ), true )
+	team.SetUp( TEAM_CT, "Counter-Terrorists", Color( 0, 0, 210 ), true )
 	team.SetSpawnPoint( TEAM_CT, { "info_player_counterterrorist" } )
 	team.SetClass( TEAM_CT, { "ct_urban", "ct_gsg9", "ct_sas", "ct_gign" } )
 
-	team.SetUp( TEAM_T, "Террористы", Color( 210, 0, 0 ), true )
+	team.SetUp( TEAM_T, "Terrorists", Color( 210, 0, 0 ), true )
 	team.SetSpawnPoint( TEAM_T, { "info_player_terrorist" } )
 	team.SetClass( TEAM_T, { "t_terror", "t_leet", "t_arctic", "t_guerilla" } )
 
-	team.SetUp( TEAM_SPECTATOR, "Наблюдатель", Color( 0, 210, 0), true )
+	team.SetUp( TEAM_SPECTATOR, "Spectator", Color( 0, 210, 0), true )
 	team.SetSpawnPoint( TEAM_SPECTATOR, { "info_player_start", "info_player_terrorist", "info_player_counterterrorist", "info_player_combine", "info_player_rebel" } )
 
 end
@@ -94,7 +94,7 @@ end
 
 hook.Add("PlayerCanPickupWeapon", "RestrictWeaponPickup", function(ply, weapon)
     local pickupSlot = weapon:GetSlot()
-    if pickupSlot == 1 or pickupSlot == 2  then
+    if pickupSlot == 0 or pickupSlot == 1 or pickupSlot == 2  then
         for _, plyWeapon in ipairs(ply:GetWeapons()) do
             local plyWeaponSlot = plyWeapon:GetSlot()
             if plyWeaponSlot == pickupSlot then
@@ -105,6 +105,9 @@ hook.Add("PlayerCanPickupWeapon", "RestrictWeaponPickup", function(ply, weapon)
                 end
             end
         end
+    end
+	if weapon:GetClass() == "weapon_cs_c4" and ply:Team() == 1 then
+        return false
     end
 end)
 
@@ -376,25 +379,25 @@ Shop.ItemsCT4 = {
 
 Shop.Items5 = {
 	{
-		name = "Световая граната",
+		name = "Flashbang",
 		classname = "weapon_flashbang",
 		Wmodel = "models/weapons/w_eq_flashbang.mdl",
 		price = 200,
-		description = "Издает громкий звук и ослепляет противника.",
+		description = "Flashes the enemy creating a loud sound.",
 	},
 	{
-		name = "Осколочная граната",
+		name = "H.E.",
 		classname = "weapon_hegrenade",
 		Wmodel = "models/weapons/w_eq_fraggrenade.mdl",
 		price = 400,
-		description = "Граната большой мощности.",
+		description = "Powerful explosive grenade.",
 	},
 	{
-		name = "Дымовая граната",
+		name = "Smoke Grenade",
 		classname = "weapon_smokegrenade",
 		Wmodel = "models/weapons/w_eq_smokegrenade.mdl",
 		price = 300,
-		description = "Устройство для отвлечения внимания.",
+		description = "Grenade used to confuse the enemy.",
 	},
 }
 
